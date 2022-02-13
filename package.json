@@ -1,13 +1,13 @@
 {
-  "name": "express-ejs-boilerplate",
+  "name": "project-2",
   "version": "1.0.0",
-  "description": "",
+  "description": "Search, find, plan and explore places to travel to.",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "authors": "Sam, Chris",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -18,7 +18,9 @@
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.17.2",
     "method-override": "^3.0.0",
-    "mongoose": "^6.1.8"
+    "mongoose": "^6.1.8",
+    "passport": "^0.5.2",
+    "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
