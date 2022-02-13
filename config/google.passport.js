@@ -15,8 +15,10 @@ module.exports = function(passport) {
         if (!user) {
             try {
                 const newUser = await User.create({
+                username: profile.displayName,
                 googleID: profile.id,
-                Email: profile.emails
+                email: profile.emails[0].value,
+                picture: profile.photos[0].value
                 })
                 done(null, newUser)
                 console.log(newUser, 'created successfully')
