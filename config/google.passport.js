@@ -12,14 +12,19 @@ module.exports = function(passport) {
   async (accessToken, refreshToken, profile, done) => {
     try {
         let user = await User.findOne({ googleID: profile.id })
+        console.log(user)
         if (!user) {
             try {
                 const newUser = await User.create({
+                displayName: profile.displayName,
+                firstName: profile.name.givenName,
+                lastName: profile.name.familyName,
+                email: profile.emails[0].value,
                 googleID: profile.id,
-                Email: profile.emails
+                picture: profile.photos[0].value
                 })
                 done(null, newUser)
-                console.log(newUser, 'created successfully')
+                console.log(profile, 'created successfully')
             } catch (err) {
                 done(err)
             }
