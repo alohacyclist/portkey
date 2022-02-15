@@ -22,9 +22,21 @@ router.post('/newUser', async (req, res) => {
     }
 })
 
-router.get("/login", (req, res) => {
+router.get('/login', (req, res) => {
     res.render("user/login");
   })
+
+router.post('/login', async (req, res) => {
+    const user = await User.findOne({ email: req.body.email })
+    if(user){
+        if (await bcrypt.compare(req.body.password, user.password)) {
+            req.session.currentUser = user
+            res.redirect('/user/profile')
+        } else {
+            res.redirect('/user/login')
+        }
+    }
+})
 
 router.get('/user/profile', async (req, res) => {
     const user = await User.findOne({...req.body})
