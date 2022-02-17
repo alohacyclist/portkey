@@ -11,9 +11,35 @@
         padding: 0;
         box-sizing: border-box;
       }
+      .flex{
+        display:flex;
+        gap: 20px;
+      }
     </style>
+    <link rel="stylesheet" href="/css/index.css">
   </head>
   <body>
+
+    <nav>
+      <div class="flex" width="2000px">
+        <a href="/user/login"> Login</a>
+        <a href="/user/create"> Sign Up</a>
+        <a href="/auth/profile">Profile</a>
+        <a href="/user/logout">LOGOUT</a>
+    </div>
+    
+    
+    <div>
+        <div>
+            <a href="/post/create"> Create Posts</a>
+            <a href="/post/all-posts"> View Posts</a>
+        
+        </div>
+    </div>
+    </nav>
     <%- body %>
+  
+
+
   </body>
 </html>
