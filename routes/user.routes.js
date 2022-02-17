@@ -2,20 +2,25 @@ const router = require('express').Router()
 const User = require('../models/user.model')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
+const multer  = require('multer')
+const { uploadFile, downloadFile } = require('../config/cloudstorage')
+const upload = multer({ dest: 'uploads/' })
 
-router.get('/newUser', (req, res) => {
-    res.render('user/signUp')
+router.get('/new-user', (req, res) => {
+    res.render('user/sign-up')
 })
 
-router.post('/newUser', async (req, res) => {
-    const user = new User({...req.body})
-    const exists  = await User.findOne({ email: req.body.email, username: req.body.username})
+router.post('/new-user', upload.single('profile-picture'), async (req, res) => {
+    const imgFile = req.file
+    const user = new User({...req.body, picture: imgFile})
+    const upload = await uploadFile(imgFile)
+    const exists  = await User.findOne({ email: req.body.email, username: req.body.username })
     if (exists) { res.send('username or email already exists') }
     const hash = await bcrypt.hash(req.body.password, 10)
     user.password = hash
     try {
         await user.save()
-        res.render('user/login')
+        res.redirect('/user/login')
     } catch (err) {
         console.error(err)
         res.redirect('error')
@@ -31,16 +36,13 @@ router.post('/login', async (req, res) => {
     if(user){
         if (await bcrypt.compare(req.body.password, user.password)) {
             req.session.currentUser = user
-            res.redirect('/user/profile')
+            res.redirect('/auth/profile')
         } else {
             res.redirect('/user/login')
         }
     }
 })
 
-router.get('/user/profile', async (req, res) => {
-    const user = await User.findOne({...req.body})
-    res.render('user/profile', {user})
-})
+
 
 module.exports = router

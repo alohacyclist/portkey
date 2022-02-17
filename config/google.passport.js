@@ -12,7 +12,7 @@ module.exports = function(passport) {
   async (accessToken, refreshToken, profile, done) => {
     try {
         let user = await User.findOne({ googleID: profile.id })
-        console.log(user)
+        console.log(profile)
         if (!user) {
             try {
                 const newUser = await User.create({
