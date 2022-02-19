@@ -11,9 +11,9 @@ router.get('/new-user', (req, res) => {
 })
 
 router.post('/new-user', upload.single('profile-picture'), async (req, res) => {
-    const imgFile = req.file
-    const user = new User({...req.body, picture: imgFile})
-    const upload = await uploadFile(imgFile)
+    const user = new User({...req.body, picture: req.file})
+    const upload = await uploadFile(req.file)
+    console.log(upload)
     const exists  = await User.findOne({ email: req.body.email, username: req.body.username })
     if (exists) { res.send('username or email already exists') }
     const hash = await bcrypt.hash(req.body.password, 10)
@@ -26,6 +26,8 @@ router.post('/new-user', upload.single('profile-picture'), async (req, res) => {
         res.redirect('error')
     }
 })
+
+router.get('/')
 
 router.get('/login', (req, res) => {
     res.render("user/login");

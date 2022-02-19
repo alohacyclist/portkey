@@ -6,8 +6,8 @@ dotenv.config();
 
 const bucket = process.env.AWS_BUCKET_NAME
 const region = process.env.AWS_BUCKET_REGION
-const  accessKey = process.env.AWS_ACCESS_KEY
-const secretKey  = process.env.AWS_SECRET_KEY
+const accessKey = process.env.AWS_ACCESS_KEY_ID
+const secretKey  = process.env.AWS_SECRET_ACCESS_KEY
 
 const storage = new S3({
   region,
@@ -16,17 +16,16 @@ const storage = new S3({
 });
 
 // uploads a file to s3
-function uploadFile(file) {
+async function uploadFile(file) {
     console.log(file)
     const fileStream = fs.createReadStream(file.path)
-  
     const uploadParams = {
       Bucket: bucket,
       Key: file.filename,
       Body: fileStream
     }
   
-    return storage.upload(uploadParams).promise()
+    return await storage.upload(uploadParams).promise()
   }
   
   // downloads a file from s3
