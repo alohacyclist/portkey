@@ -1,15 +1,15 @@
 const mongoose = require('mongoose')
 
-const countrySchema = new mongoose.Schema({
-    country: {
+const citySchema = new mongoose.Schema({
+    city: {
         type: String,
         required: true,
     },
-    cities: {
+    places: {
         type: [mongoose.SchemaTypes.ObjectId],
         default: [],
-        ref: 'Cities',
+        ref: 'Places',
     },
 })
 
-module.exports = mongoose.model('Country', countrySchema)
+module.exports = mongoose.model('City', citySchema)
