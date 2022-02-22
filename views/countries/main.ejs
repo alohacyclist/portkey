@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="/css/index.css" defer>
+
+<div class="main-container">
+    <h1> <%= data.country %>  </h1>
+    <div class="wrapper">
+        <h3>Best attractions in <%= data.capital %> </h3>
+        <% data.attractions.forEach(a => { %> 
+        <div class="info-wrapper">
+           <div class="info-card">
+                <h2> <%= a.name %> </h2>
+                <small>  <%- a.description.substr(0, 50) %>... </span> </small>
+                <br>
+                <a href="<%= a.url %>"> Check site</a> 
+            </div>
+                <div class="div-img"><img src="<%= a.image %> " alt="" width="100" height= "100"> </div> 
+          
+        </div>
+        <% }) %> 
+    </div>
+
+    <div class="wrapper">
+
+       
+            <h3>Best restaurants: </h3>
+        <% data.restaurants.forEach(r => { %> 
+      
+            <div class="info-wrapper">
+                <div class="info-card">
+                <h2> <%= r.name %> </h2>
+                <small> Lorem ipsum dolor sit... </small>
+                <a href="<%= r.url %>"> Check site</a> 
+            </div>
+                <div class="div-img"><img src="<%= r.image %> " alt="" width="100" height= "100"> </div> 
+            </div>
+   
+        <% }) %> 
+
+    </div>
+
+    <div class="wrapper">
+
+        <h3>Best hotels: </h3>
+        <% data.hotels.forEach(h => { %> 
+      
+            <div class="info-wrapper">
+                <div class="info-card">
+                <h2> <%= h.name %> </h2>
+                <small> Lorem ipsum dolor sit... </small>
+                
+                <br>
+                <a href="<%= h.url %>"> Check site</a> 
+            </div>
+                <div class="div-img"><img src="<%= h.image %> " alt="" width="100" height= "100"> </div> 
+            </div>
+   
+        <% }) %> 
+
+    </div>
+    <a href="/countries/add-country">Add country</a>
+</div>
+

@@ -1,16 +1,42 @@
-<h1>home page</h1>
+<!-- <h1>home page</h1>
 
 <div>
     <a href='/auth/google'><button>Sign in with Google</button></a>
 </div>
+ -->
 
 
 
+<div class="search-wrapper">
+  <h1>Search for Country</h1>
+  <div class="search-bar">
+    <form class="search-btn" action="/countries/main" method="post">
+        <input type="search" id="search" name="search" autocomplete="off" data-search>
+        <button type="submit"> &#128269</button>
+    </form>
+   
+  </div>
+  <span class="message"> <a class="message" href="./add-country"> <%= message %>  </a> </span>
 
-<div>
+
+
+<div class="user-cards" data-user-cards-container>
+    <template data-user-template>
     
-    <form class="search-bar" action="/post/search" method="post">
-    <input type="search" name="search">
-    <button type="submit">&#x1F50D</button>
+    <div class="card">
+     
+    
+      <div class="header" data-header></div>
+      <div class="body" data-body></div>
+   
 
+    </div>
+  
+
+  </template>
 </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="/js/db.js"></script>
+  <script type="text/javascript" src="/js/index.js"></script>
+

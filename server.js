@@ -52,11 +52,12 @@ app.use((req, res, next) => {
 
 // home route
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home",{message: ""});
 });
 
 app.use('/auth', require('./routes/auth.routes'))
 app.use('/user', require('./routes/user.routes'))
 app.use('/post', require('./routes/post.routes') )
+app.use('/countries', require('./routes/countries.routes') )
 
 app.listen(process.env.PORT);
