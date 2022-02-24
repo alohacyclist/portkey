@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Portkey</title>
     <style>
       * {
         margin: 0;
@@ -17,31 +17,31 @@
       }
     </style>
     <link rel="stylesheet" href="/css/index.css">
-
+    <link rel="stylesheet" href="/css/weather.css" />
+    <link rel="stylesheet" href="/css/maps.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
   </head>
   <body>
 
     <nav>
       <div class="flex" width="2000px">
-        <a href="/user/login"> Login</a>
-        <a href="/user/create"> Sign Up</a>
-        <a href="/auth/profile">Profile</a>
-        <a href="/user/logout">LOGOUT</a>
+        <a class='nav-link' href="/user/login">Login</a>
+        <a class='nav-link' href="/user/create">Sign Up</a>
+        <a class='nav-link' href="/auth/profile">Profile</a>
+        <a class='nav-link' href="/user/logout">LOGOUT</a>
     </div>
-    
-    
-    
+
     <div>
         <div>
-            <a href="/post/create"> Create Posts</a>
-            <a href="/post/all-posts"> View Posts</a>
-        
+            <a class='nav-link' href="/post/create"> Create Posts</a>
+            <a class='nav-link' href="/post/all-posts"> View Posts</a>
         </div>
     </div>
     </nav>
-    <%- body %>
-  
 
+    <%- body %>
 
   </body>
 </html>

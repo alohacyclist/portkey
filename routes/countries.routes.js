@@ -1,17 +1,11 @@
-
 const router = require('express').Router();
 const Country = require('../models/countries.model')
 var axios = require("axios").default;
 const dbDetails = require('../db.json')
 
-
-
-
-
 router.get('/add-country', (req,res) => {
     res.render('countries/add-country')
 })
-
 
 router.post('/main', async (req,res) => {
 

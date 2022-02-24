@@ -1,16 +1,15 @@
-<h1>New user</h1>
+<h1>Create an Account</h1>
 
 <br>
 
-<form action="/user/create" method="post">
-
-  <!-- <input type="file" name="profile-picture" placeholder="profile-picture"> -->
-
+<form action="/user/create" method="post" enctype="multipart/form-data">
   <input type="text" name="username" placeholder="Username" required>
   <br>
   <br>
   <input type="email" name="email" placeholder="Email" required>
   <br>
+  <br>
+  <input type="file" name="picture" placeholder="Upload a profile picture" />
   <br>
   <input type="password" name="password" placeholder="Password" required>
   <br>

@@ -16,7 +16,7 @@ const postSchema = new mongoose.Schema({
     picture: {
         type: String
     },
-    createdAt: {
+    createdAt: { 
         type: Date,
         default: Date.now,
         immutable: true,
@@ -30,6 +30,11 @@ const postSchema = new mongoose.Schema({
         type: [mongoose.SchemaTypes.ObjectId],
         default: [],
         ref: 'Comment',
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now,
+        immutable: true,
     }
 })
 

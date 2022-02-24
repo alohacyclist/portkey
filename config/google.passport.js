@@ -12,7 +12,7 @@ module.exports = function(passport) {
   async (accessToken, refreshToken, profile, done) => {
     try {
         let user = await User.findOne({ googleID: profile.id })
-        console.log(user)
+        console.log(profile)
         if (!user) {
             try {
                 const newUser = await User.create({
@@ -20,7 +20,6 @@ module.exports = function(passport) {
                 firstName: profile.name.givenName,
                 lastName: profile.name.familyName,
                 email: profile.emails[0].value,
-                googleID: profile.id,
                 picture: profile.photos[0].value
                 })
                 done(null, newUser)
@@ -36,7 +35,6 @@ module.exports = function(passport) {
         done(err)
     }
     }))
-
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
