@@ -1,8 +1,18 @@
-<h2>Sign Up</h2>
-<form action="/user/new-user" method="post" enctype="multipart/form-data">
-  <input type="text" name="username" required placeholder="Username"/>
-  <input type="email" name="email" required placeholder="Email" />
-  <input type="password" name="password" required placeholder="Password" />
+<h1>Create an Account</h1>
+
+<br>
+
+<form action="/user/create" method="post" enctype="multipart/form-data">
+  <input type="text" name="username" placeholder="Username" required>
+  <br>
+  <br>
+  <input type="email" name="email" placeholder="Email" required>
+  <br>
+  <br>
   <input type="file" name="picture" placeholder="Upload a profile picture" />
-  <button type="submit">Create Account</button>
+  <br>
+  <input type="password" name="password" placeholder="Password" required>
+  <br>
+  <br>
+  <button type="submit"> Sign Up </button>
 </form>

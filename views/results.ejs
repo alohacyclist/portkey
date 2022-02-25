@@ -1,0 +1,8 @@
+<ul>
+    <% result.forEach(function(item) { %>
+        <% if (item.name) { %>
+        <li><a href="/city/<%= item.id %>"><%= item.name %></a></li>
+        <% } else { %>
+        <li><a href="/<%= item.country %>"><%= item.country %></a></li>
+    <% }}); %>
+</ul>

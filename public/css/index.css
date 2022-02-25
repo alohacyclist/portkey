@@ -1,0 +1,142 @@
+.main-container{
+    display:flex;
+    width: 100vw;
+  /*   border: 1px solid black; */
+
+     gap: .25rem;
+     margin-top: 1rem;
+}
+
+h1{
+    font-size: 5rem;
+}
+
+h2{
+    font-size: 3rem;
+}
+
+.left-container{
+    border-right: 2px dotted green;
+    width: 50%;
+    height: 100vh;
+}
+
+.right-container{
+    border-left: 2px dotted blue;
+    width: 50%;
+    height: 100vh;
+}
+
+.search-wrapper{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .25rem;
+    margin-top: 40vh;  
+}
+
+.search-bar{
+
+    border: 1px solid black;
+    border-radius: 8px;
+    width: 300px;
+    overflow: hidden;
+}
+
+.search-btn{
+    display:flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.search-btn > button{
+    background-color: #f2f2f2;
+    padding: 5px;
+    border-radius: 8px;
+    border: none;
+}
+
+input {
+    font-size: 1rem;
+    /* border: none; */
+    width: 90%;
+    outline: none;
+    padding-left: .25rem;
+}
+
+.user-cards{
+    display:none;
+   /*  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+   flex-direction: column;
+    gap: .25rem;
+   /*  margin-top: 1rem; */
+    width: 300px;
+}
+
+a:link {
+    text-decoration: none;
+    color:black;
+}
+
+.nav-link {
+    margin: 0 2em 0 0;
+}
+
+.card {
+   
+    /* border: 1px solid black; */
+    background-color: white;
+    padding: .25rem;
+    border-radius: 8px;
+}
+
+.card > .header {
+   
+    margin-bottom: .25rem;
+    color: #111; 
+}
+
+.card > .body {
+    font-size: .8rem;
+    color: #777;
+}
+
+.hide {
+    display:none;
+}
+
+.wrapper{
+    /* border: 1px solid black; */
+    background-color: white;
+    padding: .25rem;
+}
+
+.info-wrapper{
+    display:flex;
+    
+    gap: 20px;
+    /* border: 1px solid black; */
+    background-color: white;
+    padding: .25rem;
+    height: 20vh;  
+}
+
+.info-card {
+/*     display:flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    align-items: center; */
+   /*  border: 1px solid black; */
+    width: 70%;
+
+}
+
+.div-img{
+    border: 1px solid blue;
+}
+
+.div-img > img {
+    height: 100%;
+    width: 100%;
+}

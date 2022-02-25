@@ -9,13 +9,17 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    picture: { 
+        type: String,
+    },
     password: {
         type: String,
         required: true,
         minLength: 8,
     },
     picture: { 
-        type: Object,
+        type: String,
+        default: 'https://res.cloudinary.com/portkey/image/upload/v1645273815/profile-pictures/hp_owshdn.png'
     },
     role: {
         type: String,
