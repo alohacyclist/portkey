@@ -3,11 +3,9 @@ const mongoose = require('mongoose')
 const placeSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
     },
     description: {
         type: String,
-        required: true,
     },
     url: {
         type: String
@@ -21,6 +19,5 @@ const placeSchema = new mongoose.Schema({
     }
 
 })
-
 
 module.exports = mongoose.model('Places', placeSchema)

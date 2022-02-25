@@ -9,7 +9,7 @@ let countries = []
 
 
 searchInput.addEventListener('input', (e) => {
-  message.style.display = "none"
+  /* message.style.display = "none" */
  
   if(searchInput.value === "") {
     userCardContainer.style.display = "none"

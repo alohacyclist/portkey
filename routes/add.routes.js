@@ -1,14 +1,25 @@
 const router = require('express').Router();
-const Country = require('../models/countries.model')
+const Place = require('../models/places.model')
+const Cities = require('../models/cities.model')
+
 var axios = require("axios").default;
 const dbDetails = require('../db.json')
 
-router.get('/add-country', (req,res) => {
-    res.render('countries/add-country')
+router.post('/city/:id/add-place', async (req, res) => {
+    const city = await Cities.findById(req.params.id)
+    const place = await Place.create({ ...req.body })
+    city.places.push(place.id)
+    try {
+        await place.save()
+        await city.save()
+    } catch (err) {
+        console.error(err)
+    }
+    
+    res.redirect(`/city/${city.id}`)
 })
 
 router.post('/main', async (req,res) => {
-
     //original input
     const localOriginal = req.body.search
     //make input lower case
@@ -44,24 +55,8 @@ router.post('/main', async (req,res) => {
             }
         })
     } else {
-       res.render('/',{message: "Add this Country"})
-    }
-    
-        
+       res.render('countries/add-country',{local, message: "Add this Country"})
+    }     
 })
-
-
-router.post('/add', async (req,res) => {
-    const country = new Country({...req.body})
-  
-    try {
-        await country.save()
-        res.redirect('/countries/index')
-    } catch (err) {
-        console.error(err)
-        res.send('error')
-    }
-})
-
 
 module.exports = router

@@ -1,34 +1,19 @@
-<!-- <h1>home page</h1>
-
-<div>
-    <a href='/auth/google'><button>Sign in with Google</button></a>
-</div>
- -->
 <div class="search-wrapper">
  
   <div class="search-bar">
-    <form class="search-btn" action="/countries/main" method="post">
-        <input type="search" id="search" name="search" autocomplete="off" placeholder="Search for Country" data-search>
+    <form class="search-btn" action="/search" method="post">
+        <input type="search" id="search" name="search" autocomplete="off" placeholder="Search for City or Country" data-search>
         <button type="submit"> &#128269</button>
     </form>
-   
   </div>
-  <span class="message"> <a class="message" href="./add-country"> <%= message %>  </a> </span>
-
-
 
 <div class="user-cards" data-user-cards-container>
     <template data-user-template>
     
     <div class="card">
-     
-    
       <div class="header" data-header></div>
       <div class="body" data-body></div>
-   
-
     </div>
-  
 
   </template>
 </div>

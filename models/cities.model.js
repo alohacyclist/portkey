@@ -1,15 +1,23 @@
 const mongoose = require('mongoose')
 
 const citySchema = new mongoose.Schema({
-    city: {
+    country: {
         type: String,
-        required: true,
+    },
+    geonameid: {
+        type: Number,
+    },
+    name: { 
+        type: String,
+    },
+    subcountry: {
+        type: String,
     },
     places: {
         type: [mongoose.SchemaTypes.ObjectId],
         default: [],
-        ref: 'Places',
-    },
+        ref: 'Places'
+    }
 })
 
 module.exports = mongoose.model('City', citySchema)

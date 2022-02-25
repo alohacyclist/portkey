@@ -35,7 +35,7 @@ data = [{
                       "image": "https://www.hotelstarinn.com/wp-content/uploads/sites/27/2017/09/KT0A4380.jpg"
                   }               
              ]
-          },
+        },
           {
               "id": 2,
               "country": "England",

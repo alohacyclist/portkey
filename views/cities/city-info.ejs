@@ -1,0 +1,23 @@
+<br>
+<br>
+<%= result.country %>
+<br>
+<br>
+<%= result.name %>
+<br>
+<br>
+<ul>
+    <% for(let i=0; i < result.places.length; i++) { %>
+        <li><%= result.places[i].name %></li>
+        <li><%= result.places[i].description %></li>
+        <br>
+    <% }; %>
+</ul>
+
+<br>
+<br>
+<form action="/city/<%= result.id %>/add-place" method="post">
+    <input type="text" name="name" placeholder="Add title">
+    <textarea name="description"></textarea>
+    <button type="submit">Add</button>
+</form>
