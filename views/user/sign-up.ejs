@@ -1,18 +1,27 @@
-<h1>Create an Account</h1>
+<link rel="stylesheet" href="/css/card.css">
 
-<br>
+<div class="body-container">
+  <div class="card-container">
 
-<form action="/user/create" method="post" enctype="multipart/form-data">
-  <input type="text" name="username" placeholder="Username" required>
-  <br>
-  <br>
-  <input type="email" name="email" placeholder="Email" required>
-  <br>
-  <br>
-  <input type="file" name="picture" placeholder="Upload a profile picture" />
-  <br>
-  <input type="password" name="password" placeholder="Password" required>
-  <br>
-  <br>
-  <button type="submit"> Sign Up </button>
-</form>
+    <h1>Create an Account</h1>
+    
+      
+        <form class= "card-form" action="/user/create" method="post" enctype="multipart/form-data">
+    
+          <input type="text" name="username" placeholder="Username" required>
+          <input type="email" name="email" placeholder="Email" required>
+         
+          <input type="password" name="password" placeholder="Password" required>
+          <div class="profile-pic">
+    
+            <input type="file" name="picture" placeholder="Upload a profile picture" />
+           
+          </div>
+          <button type="submit"> Sign Up </button>
+      
+        </form>
+    
+    
+    
+    </div>
+</div>

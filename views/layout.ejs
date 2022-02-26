@@ -11,12 +11,24 @@
         padding: 0;
         box-sizing: border-box;
       }
-      .flex{
+      .nav-bar{
+       /*  position: absolute; */
         display:flex;
-        gap: 20px;
+        width: 100vw;
+        background-color: #9ADCFF ;
+        justify-content: space-evenly;
+        padding: 10px 0px;
+      }
+      .nav-bar > a {
+        text-decoration: none;
+        color: #faee6b; 
+      }
+      .nav-bar > a:hover {
+        cursor: pointer;
+        color: #fc6290;
       }
     </style>
-    <link rel="stylesheet" href="/css/index.css">
+   
     <link rel="stylesheet" href="/css/weather.css" />
     <link rel="stylesheet" href="/css/maps.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -26,18 +38,13 @@
   <body>
 
     <nav>
-      <div class="flex" width="2000px">
+      <div class="nav-bar" width="2000px">
         <a class='nav-link' href="/user/login">Login</a>
         <a class='nav-link' href="/user/create">Sign Up</a>
         <a class='nav-link' href="/auth/profile">Profile</a>
-        <a class='nav-link' href="/user/logout">LOGOUT</a>
-    </div>
-
-    <div>
-        <div>
-            <a class='nav-link' href="/post/create"> Create Posts</a>
-            <a class='nav-link' href="/post/all-posts"> View Posts</a>
-        </div>
+        <a class='nav-link' href="/post/create"> Create Posts</a>
+        <a class='nav-link' href="/post/all-posts"> View Posts</a>
+        <a class='nav-link' href="/user/logout">Logout</a>
     </div>
     </nav>
 

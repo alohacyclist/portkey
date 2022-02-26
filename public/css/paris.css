@@ -1,0 +1,21 @@
+.paris-container{
+  display:flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.left-div{
+    border: 3px dotted green;
+    width: 50%;
+}
+
+.right-div{
+    border: 3px dotted purple;
+    width: 50%;
+}
+
+.city-info{
+    border: 1px solid black;
+    width: 100%;
+    height: 20%;
+}

@@ -1,0 +1,40 @@
+.home-container{
+    display:flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid green;
+}
+
+.search-div{
+    border: 1px solid black;
+    width: 25vw;
+    height: 3.8%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.search-bar{
+    display:flex;
+    flex-wrap: wrap;
+ 
+}
+
+.search-bar > input {
+   
+    width: 90%;
+    border:none;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.search-bar > button {
+    background-color: lightgrey;
+    border: none;
+    padding: 6px;
+    width: 10%;
+    
+  
+}
