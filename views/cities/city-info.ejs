@@ -12,13 +12,16 @@
         <li><%= result.places[i].description %></li>
         <li><%= result.places[i].author %></li>
         <li><img src="<%= result.places[i].image %>"></li>
+        <a href="/city/<%= result.places[i].id %>/edit"><button>Edit</button></a>
+        <form action="/city/<%= result.places[i].id %>/delete?_method=DELETE" method="post" >
+          <button type="submit">Delete</button>
+        </form>
         <br>
     <% }; %>
 </ul>
 
 <br>
 <br>
-// FORM TO ADD A PLACE
 <form action="/city/<%= result.id %>/add-place" method="post" enctype="multipart/form-data">
     <input type="text" name="name" placeholder="Add title" required>
     <textarea name="description" placeholder="Say something about this place..." required></textarea>
