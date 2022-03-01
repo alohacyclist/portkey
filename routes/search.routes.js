@@ -24,7 +24,7 @@ router.get('/:country', async (req, res) => {
 
 router.get('/city/:id', async (req, res) => {
     const result = await Cities.findById(req.params.id).populate('places')
-    /* 
+    
     // GET WEATHER
     const city = result.name
     const weatherOptions = {
@@ -49,8 +49,7 @@ router.get('/city/:id', async (req, res) => {
      
     const coordinates = [locationResponse.data.locations[0].referencePosition.latitude, locationResponse.data.locations[0].referencePosition.longitude]
 
-    res.render('cities/city-info', { result, response, coordinates }) */
-    res.render('cities/city-info2')
+    res.render('cities/city-info', { result, response, coordinates })
 })
 
 module.exports = router
