@@ -1,24 +1,58 @@
 <link rel="stylesheet" href="/css/home.css">
 
+<div class="wrapper">
 
-<div class="home-container">
-
-  <div class="search-div">
-    <form class="search-bar" action="/search" method="post">
-      <input type="search" id="search" name="search" autocomplete="off" placeholder="Search for City or Country" data-search>
-      <button type="submit"> &#128269</button>
-  </form>
+  <div class="head-wrapper">
+      
   
+
   </div>
-   
-  
-  
-      <template data-user-template>
-        <a href="city/6219ebc49fc3a4b907c30907">>  <div class="header" data-header></div> </a>
-        <div class="body" data-body></div>
-    </template>
+
+    <div class="home-container">
+      <div class="img-wrap">
+        <img src="/images/logo.png" alt="">
+      </div>
+     
+      <div class="search-div">
+        <form class="search-bar" action="/search" method="post">
+          <input type="search" id="search" name="search" autocomplete="off" placeholder="Search for City or Country" data-search>
+          <button type="submit"> &#128269</button>
+      </form>
+      </div>
+
+      <div class="user-cards" data-user-cards-container>
+
+        <template data-user-template>
+          <ul class="card">
+        
+          <li name="li" class="header" style="list-style: none;" data-header> </li> 
+      
+        <!--  <div class="body" data-body></div> -->
+          </ul>
+      </template>
+
+
+    </div>
+  </div>
+
+    <!-- <div class="grid">
+      <div class="img-wrapper">
+        <img src="../images/berlin.jpeg" alt="">
+        <div class="country-name"> <h2>BERLIN</h2> </div>
+      </div>
+      <div class="img-wrapper">
+        <img src="../images/london.png" alt="">
+        <div class="country-name"> <h2>LONDON</h2> </div>
+      </div>
+      <div class="img-wrapper">
+        <img src="./images/paris.jpeg" alt="">
+        <div class="country-name"> <h2>PARIS</h2> </div>
+      </div>
+    </div> -->
+
 
 </div>
+
 
 
 

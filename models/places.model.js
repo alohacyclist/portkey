@@ -16,8 +16,12 @@ const placeSchema = new mongoose.Schema({
     placeType: {
         type: String,
         options: ['Attractions', 'Food & Drink', 'Hotels', 'Other'],
+    },
+    author: {
+        type: mongoose.SchemaTypes.ObjectId,
+        required: true,
+        ref: 'Author' 
     }
-
 })
 
 module.exports = mongoose.model('Places', placeSchema)

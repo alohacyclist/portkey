@@ -27,6 +27,7 @@ router.post('/main', async (req,res) => {
     //remake the input into right template
     const local = localLower.charAt(0).toUpperCase() + localLower.substr(1)
 
+    
     //console.log(local)
 
      let db = dbDetails

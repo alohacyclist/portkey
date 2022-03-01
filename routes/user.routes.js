@@ -10,8 +10,9 @@ router.get('/create', (req, res) => {
     res.render('user/sign-up')
 })
 
-router.post('/create', isLoggedIn, upload.single('picture'), async (req, res) => {
+router.post('/create', upload.single('picture'), async (req, res) => {
     const user = new User({...req.body, picture: req.file.path})
+  
     const exists  = await User.findOne({ email: req.body.email, username: req.body.username })
     if (exists) { res.send('username or email already exists') }
     const hash = await bcrypt.hash(req.body.password, 10)
@@ -33,9 +34,9 @@ router.get('/login', (req, res) => {
 
 router.post('/login', async (req,res) => {
     const user  = await User.findOne({ email: req.body.email })
-    console.log(user)
+    
     if (user) {
-        
+       
         if(await bcrypt.compare(req.body.password, user.password)) {
             req.session.currentUser = user
             res.redirect('/auth/profile')

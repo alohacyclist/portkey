@@ -14,28 +14,60 @@ searchInput.addEventListener('input', (e) => {
   if(searchInput.value === "") {
     userCardContainer.style.display = "none"
   } else {
-    userCardContainer.style.display = "flex"
+
+ userCardContainer.style.display = "flex"
+ userCardContainer.addEventListener('click', () => {
+  //let incl = div.includes('Barreiro')
+ 
+})
+ 
+ 
+   
+   
   }
   
   const value = e.target.value.toLowerCase()       
-    // console.log(value)
-    // console.log(data[0].data[0].country)
-    countries.forEach(country => {
-      const isVisible = country.name.toLowerCase().includes(value)
+  //  console.log(value)
+  //console.log(countries)
+   //console.log(data[0].country)
+   //console.log(countries)
+    //console.log(countries)
+   
+ 
+ /*  countries.forEach(country => {
+    
+    const isVisible = country.name.toLowerCase().includes(value)
       country.element.classList.toggle('hide', !isVisible)
+  }) */
+
+  countries.forEach(city => {
+     // console.log(country)
+      const isVisible = city.name.toLowerCase().includes(value)
+      city.element.classList.toggle('hide', !isVisible)
+      
        // console.log(isVisible)
        // country.element.classList.toggle('hide', !isVisible)
        // console.log(country.country)
       })
 })
 
-countries = data[0].data.map(country => {
-  const card = userCardTemplate.content.cloneNode(true).children[0]
-  const header = card.querySelector('[data-header]')
-  const body = card.querySelector('[data-body]')
-  header.textContent = country.country
-  userCardContainer.append(card)
-  return {name: country.country, element: card}
-})
+
+  countries = data.map(country => {
+  
+   
+      const card = userCardTemplate.content.cloneNode(true).children[0]
+      const header = card.querySelector('[data-header]')
+      const body = card.querySelector('[data-body]')
+      //console.log(name.name)
+      header.textContent = country.name
+      userCardContainer.append(card)
+      return {name: country.name, country: country.country, element: card}
+
+  
+   
+  })
+  
+
+
 
 //https://raw.githubusercontent.com/Makariuz/travel-app/main/db.json
