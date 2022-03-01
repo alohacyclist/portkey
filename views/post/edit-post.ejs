@@ -1,15 +1,8 @@
-<h1> Edit Post </h1>
-
-<div class="container">
-    
-     <div class="card-post">
-         <h2> <%=  post.title  %>  </h2>
-         <p> <%= post.content %> </p>
-         <% if(post.picture) { %>
-         
-         <% } %>
- 
-     </div>
-     
- 
- </div>
+<h1>Edit</h1>
+<form action="/post/<%= post.id %>/update" method="POST">
+<input type="text" name="title" value="<%= post.title %>" placeholder="Add a title..." required>
+<textarea name="description" placeholder="Add a short description to your article..." required><%= post.description %></textarea>
+<textarea name="content" placeholder="Type away..." required><%= post.content %></textarea>
+<img src="<%= post.picture %>" placeholder="Add a picture to your article...">
+<button type="submit">Update</button>
+</form>

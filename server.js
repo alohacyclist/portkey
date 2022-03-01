@@ -23,6 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 // hooking up the public folder
 app.use(express.static("public"));
 
+app.use(override('_method'))
+
 require('./config/google.passport')(passport);
 
 // middleware for setting up the session

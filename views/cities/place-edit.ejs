@@ -1,4 +1,4 @@
-<form action="/city/<%= result.id %>/update?_method=PUT" method="POST" enctype="multipart/form-data">
+<form action="/city/<%= result.id %>/update" method="POST">
     <input type="text" name="name" value="<%= result.name %>" placeholder="Add title" required>
     <textarea name="description" placeholder="Say something about this place..." required><%= result.description %></textarea>
     <img src="<%= result.image %>">

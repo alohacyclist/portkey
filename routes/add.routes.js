@@ -1,11 +1,10 @@
 const router = require('express').Router();
-var axios = require("axios").default;
 const Place = require('../models/places.model')
 const Cities = require('../models/cities.model')
 const multer  = require('multer')
 const upload = require('../config/cloudstorage')
-const dbDetails = require('../db.json')
 const {isLoggedIn} = require('../middlewares/guard')
+const override = require('method-override')
 
 // route for creating a new place
 router.post('/city/:id/add-place', isLoggedIn, upload.single('image'), async (req, res) => {
@@ -34,10 +33,11 @@ router.get('/city/:id/edit', async (req, res) => {
 })
 
 // route for updating a place after editing
-router.put('/city/:id/update', async (req, res) => {
+router.post('/city/:id/update', async (req, res) => {
+    console.log(req.body)
     const result = await Cities.findById(req.params.id)
     let place = await Place.findByIdAndUpdate(req.params.id, {...req.body, author: req.session.currentUser})
-    await place.save()
+    /* await place.save() */
     res.send('update')
 })
 
