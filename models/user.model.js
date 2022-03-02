@@ -21,6 +21,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'https://res.cloudinary.com/portkey/image/upload/v1645273815/profile-pictures/hp_owshdn.png'
     },
+    content: {
+        type: [mongoose.Schema.ObjectId],
+        default: []
+    },
+    photos: {
+        type: [mongoose.Schema.ObjectId],
+        default: []
+    },
     role: {
         type: String,
         default: 'user'

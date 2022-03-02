@@ -13,6 +13,7 @@ router.post('/city/:id/add-place', isLoggedIn, upload.single('image'), async (re
     try {
         await place.save()
         await city.save()
+        req.session.currentUser.content.push(place)
     } catch (err) {
         console.error(err)
     }}
@@ -20,6 +21,7 @@ router.post('/city/:id/add-place', isLoggedIn, upload.single('image'), async (re
     try {
         await place.save()
         await city.save()
+        req.session.currentUser.content.push(place)
     } catch (err) {
         console.error(err)
     }}    
@@ -37,7 +39,6 @@ router.post('/city/:id/update', async (req, res) => {
     console.log(req.body)
     const result = await Cities.findById(req.params.id)
     let place = await Place.findByIdAndUpdate(req.params.id, {...req.body, author: req.session.currentUser})
-    /* await place.save() */
     res.send('update')
 })
 
