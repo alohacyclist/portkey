@@ -23,11 +23,13 @@ const userSchema = new mongoose.Schema({
     },
     content: {
         type: [mongoose.Schema.ObjectId],
-        default: []
+        default: [],
+        ref:'Content'
     },
     photos: {
         type: [mongoose.Schema.ObjectId],
-        default: []
+        default: [],
+        ref:'Photos'
     },
     role: {
         type: String,

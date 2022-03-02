@@ -10,12 +10,13 @@ router.get('/create', isLoggedIn, async (req,res) => {
 })
 
 router.post('/create', isLoggedIn, upload.single('picture'), async (req,res) => {
+    const user = await User.findById(req.session.currentUser._id)
     if(!req.file) {const post = await Post.create({ ...req.body, author: req.session.currentUser})
-            console.log(req.session.currentUser)
-            req.session.currentUser.content.push(post)
+            // adds created content to the user db
+            user.content.push(post)
         try{
             await post.save()
-            
+            await user.save()
             res.redirect('/post/all-posts')
 
         } catch (error) {
@@ -23,13 +24,13 @@ router.post('/create', isLoggedIn, upload.single('picture'), async (req,res) => 
         }
     } else {
         {const post = await Post.create({ ...req.body, picture: req.file.path, author: req.session.currentUser})
-            console.log(req.session.currentUser)
-            req.session.currentUser.content.push(post)
+            // adds created content to the user db
+            user.content.push(post)
+            user.photos.push(post)
         try{
             await post.save()
-            console.log(post)
-            req.session.currentUser.content.push(post)
-            res.redirect('post/all-posts')
+            await user.save()
+            res.redirect('/post/all-posts')
 
         } catch (error) {
             console.log(error)
