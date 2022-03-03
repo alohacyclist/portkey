@@ -48,7 +48,7 @@ const postSchema = new mongoose.Schema({
 postSchema.pre('validate', function (next) {
     if (this.description) {
       // sanitize html and save it in the post
-      this.sanitizedHtml = dompurify.sanitize(marked.parse(this.description))
+      this.sanitizedHtml = dompurify.sanitize(marked.parse(this.content))
     }
     // update the updated date whenever we change something in the post
     this.updatedAt = Date.now()

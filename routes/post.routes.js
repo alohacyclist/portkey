@@ -14,6 +14,7 @@ router.post('/create', isLoggedIn, upload.single('picture'), async (req,res) => 
     if(!req.file) {const post = await Post.create({ ...req.body, author: req.session.currentUser})
             // adds created content to the user db
             user.content.push(post)
+            console.log(user)
         try{
             await post.save()
             await user.save()
@@ -27,6 +28,7 @@ router.post('/create', isLoggedIn, upload.single('picture'), async (req,res) => 
             // adds created content to the user db
             user.content.push(post)
             user.photos.push(post)
+            console.log(user)
         try{
             await post.save()
             await user.save()
@@ -44,7 +46,7 @@ router.get('/all-posts', async (req,res) => {
 })
 
 router.get('/read/:id', isLoggedIn, async (req, res) => {
-    const post = await Post.findById(req.params.id)
+    const post = await Post.findById(req.params.id).populate('author')
     res.render('post/read-post', { post }) 
 })
 
@@ -54,7 +56,6 @@ router.get('/:id/edit', isLoggedIn, async (req, res) => {
 })
 
 router.post('/:id/update', isLoggedIn, async (req, res) => {
-    console.log(req.body)
     const post = await Post.findByIdAndUpdate(req.params.id, {...req.body, author: req.session.currentUser}, {new: true})
     res.render('post/read-post', { post }) 
 })

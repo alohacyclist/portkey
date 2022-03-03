@@ -21,16 +21,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'https://res.cloudinary.com/portkey/image/upload/v1645273815/profile-pictures/hp_owshdn.png'
     },
-    content: {
-        type: [mongoose.Schema.ObjectId],
-        default: [],
-        ref:'Content'
-    },
-    photos: {
-        type: [mongoose.Schema.ObjectId],
-        default: [],
-        ref:'Photos'
-    },
+    content: [{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref:'Post'
+    }],
     role: {
         type: String,
         default: 'user'

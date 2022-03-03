@@ -1,3 +1,13 @@
 <h1>Welcome <%= user.username %></h1>
 <h4><%= user.email %></h4>
 <img src=<%= user.picture %>>
+
+<h2>All my posts:</h2>
+<% user.content.forEach(content => { %>
+    <div>
+        <%= content.title %>
+        <a href="/post/read/<%= content.id %>"><button>READ</button></a>
+        <br>
+    </div>
+    
+<% }) %>

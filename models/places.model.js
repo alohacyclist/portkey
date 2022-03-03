@@ -5,7 +5,7 @@ const { JSDOM } = require('jsdom')
 const dompurify = createDomPurify(new JSDOM().window)
 
 const placeSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
     },
     description: {
@@ -23,8 +23,8 @@ const placeSchema = new mongoose.Schema({
     },
     author: {
         type: mongoose.SchemaTypes.ObjectId,
-        required: false,
-        ref: 'Author' 
+        required: true,
+        ref: 'User' 
     },
     createdAt: {
         type: Date,
