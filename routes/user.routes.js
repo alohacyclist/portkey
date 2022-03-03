@@ -6,13 +6,14 @@ const {isLoggedIn} = require('../middlewares/guard')
 const multer  = require('multer')
 const upload = require('../config/cloudstorage')
 
+router.get('/')
+
 router.get('/create', (req, res) => {
     res.render('user/sign-up')
 })
 
 router.post('/create', upload.single('picture'), async (req, res) => {
-    const user = new User({...req.body, picture: req.file.path})
-  
+    if(!req.file) {const user = new User({...req.body })
     const exists  = await User.findOne({ email: req.body.email, username: req.body.username })
     if (exists) { res.send('username or email already exists') }
     const hash = await bcrypt.hash(req.body.password, 10)
@@ -23,10 +24,20 @@ router.post('/create', upload.single('picture'), async (req, res) => {
     } catch (err) {
         console.error(err)
         res.redirect('error')
-    }
+    }}
+    else {const user = new User({...req.body, picture: req.file.path})
+    const exists  = await User.findOne({ email: req.body.email, username: req.body.username })
+    if (exists) { res.send('username or email already exists') }
+    const hash = await bcrypt.hash(req.body.password, 10)
+    user.password = hash
+    try {
+        await user.save()
+        res.redirect('/user/login')
+    } catch (err) {
+        console.error(err)
+        res.redirect('error')
+    }}
 })
-
-router.get('/')
 
 router.get('/login', (req, res) => {
     res.render("user/login");
