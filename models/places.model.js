@@ -5,7 +5,7 @@ const { JSDOM } = require('jsdom')
 const dompurify = createDomPurify(new JSDOM().window)
 
 const placeSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
     },
     description: {
@@ -23,8 +23,8 @@ const placeSchema = new mongoose.Schema({
     },
     author: {
         type: mongoose.SchemaTypes.ObjectId,
-        required: false,
-        ref: 'Author' 
+        required: true,
+        ref: 'User' 
     },
     createdAt: {
         type: Date,
@@ -42,7 +42,7 @@ const placeSchema = new mongoose.Schema({
 // before saving to the database
 placeSchema.pre('validate', function (next) {
     if (this.description) {
-      // sanitize html and seve it in the post
+      // sanitize html and save it in the post
       this.sanitizedHtml = dompurify.sanitize(marked.parse(this.description))
     }
     // update the update date whenever we change something in the post

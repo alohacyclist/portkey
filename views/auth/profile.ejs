@@ -1,9 +1,6 @@
 
 
 
-
-
-
 <link rel="stylesheet" href="/css/card.css">
 
 
@@ -16,29 +13,38 @@
       
         <div class="view-card">
             <h3> View Personal Articles: </h3>
-            <div class="article-card">
-                <h4>Article Title #1</h4>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, impedit... <a href="#">See more</a> </p>
-            </div>
-            <div class="article-card">
-                <h4>Article Title #3</h4>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, impedit... <a href="#">See more</a> </p>
-            </div>
+            <% user.content.forEach(content => { %>
+                <div class="article-card">
+                   <h4> <%= content.title %> </h4>
+                    <%= content.content.slice(0, 80) %>...
+                    <a href="/post/read/<%= content.id %>"><button>Read Post</button></a>
+                </div>
+                
+            <% }) %>
         </div>
         
        </div>
        <div class="prof-pictures">
+
         <img src=<%= user.picture %>>
 
         <div class="view-gallery">
             <h2> View Gallery: </h2>
+            <% user.content.forEach(content => { %>
+                <div class="image-card">
+                    <% if(content.picture) { %>
+                        <img src="<%= content.picture %>" style="width: 150px; height: 140px;">
+                        <% } %>
+                </div>
+                
+                <% }) %>
+
+            
+                    
+                  
+         
         </div>
        </div>
     </div>
 
 </div>
-
-
-
-    
-

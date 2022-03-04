@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/paris2.css">
 <link rel="stylesheet" href="/css/weather.css">
-<div class="content">
+
 <div class="wrapper">
 
 
@@ -9,17 +9,46 @@
         <div class="info-header">
             <h2> <%= result.name %>  </h2>
             <h3> <%= result.country %>  </h3>
+            <small> 
+            
+            </small>
         </div>
 
-        <div class="info-map" id="map" style="width:400px; height:400px;">
+        <div class="info-map" id="map" style="width:100%; height:340px; ">
         </div>
         <div class="info-reviews">
-            <div class="info-review-card">
+           <!--  <div class="info-review-card">
                 <h3>Article Title (public)</h3>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, omnis... <a href="#">See more</a> </p>
-            </div>
-        </div>
+            </div> -->
+           
+            <% if(result.posts.length === 0) {%>
+              <p> There are no articles for <%= result.name %> </p> 
+              <div class="info-create-post">
+                <form class="create-post" action="/post/create/<%= result.id %> " method="get">
+                  <button type="submit"> Create a Post </button>
+                </form>
+              </div>
+           
+              <%} else { %> 
+            <div class="info-review-card">
+                <% result.posts.forEach(article => { %> 
+                  <h3> <%= article.title %>  </h3>
+                  <p> <%= article.content.slice(0, 80) %> ... <a href="/post/read/<%= article.id %> ">See more</a> </p>
+                  <small> Posted by: <%= article.author.username %></small>
+                  <hr>
+                <% }) %> 
+               
+               
+             </div>
 
+        </div>
+        <div class="info-create-post">
+          <form class="create-post" action="/post/create/<%= result.id %> " method="get">
+            <button type="submit"> Create a Post </button>
+          </form>
+        </div>
+        <% } %> 
         
 
 
@@ -27,54 +56,107 @@
 
     <!-- weather restaurants and attractions etc -->
     <div class="details">
-      <div class="info-weather">
-        <div class="weather-card">
-          <div class="weather-top">
-              <div class="weather-info">
-                  <div>
-                  Here is your forecast for <%= response.data.location.name %>
-                  <br>
-                  Local Time: <%= response.data.location.localtime %>
-                  <br>
-                  Current Temperature: <%= response.data.current.temp_c %>°C
-                  <br>
-                  Feels Like: <%= response.data.current.feelslike_c %>°C
-                  </div>
-                  
-                  <div class="forecast-weather-icon">
-                      <%= response.data.current.condition.text %> 
-                      <img src='<%= response.data.current.condition.icon %>'>
-                  </div> 
-              </div>  
-          </div>
+   
+      <div class="details-top">
+ 
+        
+        <% if(result.places.length === 0) {%>
+          <div class="details-places">
+            <h4> No places have been added to <%= result.name %> </h4>
+           <hr>
+           <div class="no-info-add-city">
+            <h3> Share a experience! </h3>
+            <form class="info-form" action="/city/<%= result.id %>/add-place" method="post" enctype="multipart/form-data">
+                <label for="title">Title of the attraction:</label>
+                <input type="text" name="title" placeholder="Add attraction" required>
+                <label for="description">Provide a description:</label>
+                <textarea name="description" id="description" placeholder="Say something about this place..."cols="50" rows="5" required></textarea>
+                <label for="image">Upload a picture:</label>
+                <input type="file" name="image" placeholder="Add photo">
+                
+                <button type="submit">Write a review</button>
+            </form>
+        </div> 
+            
+           
       </div>
-    </div>
-    <div class="info-restaurants">
+          <% } else { %> 
+            <div class="details-header">
+              <h3>Best attractions in <%= result.name %> </h3>
+             
+            </div>
+            
+        <% for(let i=0; i < result.places.length; i++) { %>
+        <div class="details-places">
+            
+              <h4> <%= result.places[i].title %> </h4>
+             <div class="place-content">
+              <p class="description-font"><%= result.places[i].description %></p>
+              
+              <small> Posted by: <%= result.places[i].author.username %></small>
+             
+             </div> 
+             <div class="place-image">
+              <img src="<%= result.places[i].image %>" width="120px" height="100px">
+             </div>
+             <hr>
+              <form action="/city/<%= result.places[i].id %>/delete?_method=DELETE" method="post" >
+                <button type="submit">Delete</button>
+              </form>
+             
+        </div>
+        <% }; %>
+        
+       </div>
+  
+
+ 
+
+
+
+   <!--  <div class="info-restaurants">
       <h3> Restaurants </h3>
+
     </div>
     <div class="info-hotels">
       <h3> Hotels </h3>
+    </div> -->
+    <div class="details-bottom">
+   <!-- at the bottom right -->
+   <div class="info-add-city">
+    <h3> Share a experience! </h3>
+    <form class="info-form" action="/city/<%= result.id %>/add-place" method="post" enctype="multipart/form-data">
+        <label for="title">Title of the attraction:</label>
+        <input type="text" name="title" placeholder="Add attraction" required>
+        <label for="description">Provide a description:</label>
+        <textarea name="description" id="description" placeholder="Say something about this place..."cols="50" rows="5" required></textarea>
+        <label for="image">Upload a picture:</label>
+        <input type="file" name="image" placeholder="Add photo">
+        
+        <button type="submit">Write a review</button>
+    </form>
+</div> 
     </div>
-    <div class="info-add-city">
-      <h3> Share a experience! </h3>
-      <form class="info-form" action="#" method="post" enctype="multipart/form-data">
-          <label for="title">Title of the review:</label>
-          <input type="text" name="title" placeholder="Add title" required>
-          <label for="description">Provide a description:</label>
-          <textarea name="description" id="description" placeholder="Say something about this place..."cols="50" rows="5" required></textarea>
-          <label for="img">Upload a picture:</label>
-          <input type="file" name="image" placeholder="Add photo">
-          <button type="submit">Write a review</button>
-      </form>
-  </div>
-  </div>
-</div>
-<!-- scripts -->
 
+    <% } %> 
+ 
+  </div>
+
+<!-- scripts -->
+<script>
+    const doc = document.querySelector('details');
+
+    doc.onload = function(){
+      window.scrollTo(0,0);
+  console.log('test')
+    }
+
+</script>
 
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
+   crossorigin="">
+  </script>
 <script>
 let map = L.map('map').setView(<%= JSON.stringify(coordinates) %>, 13)
   L.tileLayer(
@@ -112,3 +194,5 @@ let map = L.map('map').setView(<%= JSON.stringify(coordinates) %>, 13)
   L.marker(<%= JSON.stringify(coo.xy) %>).addTo(map)
 </script>
 <% }) %>
+
+

@@ -9,9 +9,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    picture: { 
-        type: String,
-    },
     password: {
         type: String,
         required: true,
@@ -21,11 +18,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'https://res.cloudinary.com/portkey/image/upload/v1645273815/profile-pictures/hp_owshdn.png'
     },
-    posts: {
-        type: [mongoose.SchemaTypes.ObjectId],
-        default: [],
-        ref: 'post'
-    },
+    content: [{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref:'Post'
+    }],
     role: {
         type: String,
         default: 'user'

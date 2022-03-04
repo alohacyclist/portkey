@@ -7,6 +7,7 @@
     <title>Portkey</title>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Indie+Flower&display=swap');
       * {
         margin: 0;
         padding: 0;
@@ -28,11 +29,12 @@
         font-size: 1.3rem;
        
       }
-      .nav-bar > a {
+      a {
+        font-family: 'Indie Flower', cursive;
         text-decoration: none;
         color: #2424cb; 
       }
-      .nav-bar > a:hover {
+      a:hover {
         cursor: pointer;
         color: #5187f7;
       }
@@ -57,6 +59,22 @@
         display:flex;
         justify-content: flex-end;
         align-items: center;
+      }
+      .footer{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        
+        text-align: center;
+        gap: 30px;
+        background-color: #565656;
+        border-top: .2px solid #2424cb;
+      }
+      .footer > a{
+        text-decoration: none;
+        color: white;
+        padding: 10px 50px;
       }
     </style>
    
@@ -83,7 +101,6 @@
         </div>
         <div class="logged-in">
           <% if (currentUser) { %> 
-            <a class='nav-link' href="/post/create"> Create Posts</a>
             <a class='nav-link' href="/auth/profile">Profile</a>
             <a class='nav-link' href="/post/all-posts"> View Posts</a>
         </div>
@@ -101,4 +118,12 @@
     <%- body %>
 
   </body>
+  <footer class="footer">
+  
+      <a href="https://www.ironhack.com/en">IronHack</a>
+  
+    <a href="https://github.com/alohacyclist">GITHUB - Christian </a>
+    <a href="https://github.com/makariuz">GITHUB - Samuel </a>
+  
+  </footer>
 </html>

@@ -2,23 +2,6 @@ const router = require('express').Router()
 const axios = require('axios')
 const Map = require('../models/map.model')
 
-/* axios.get('https://api.countrystatecity.in/v1/countries', async (req,res) {
-	
-})
-
-const headers = new Headers();
-headers.append("X-CSCAPI-KEY", "API_KEY");
-
-const requestOptions = {
-  method: 'GET',
-  headers: headers,
-  redirect: 'follow'
-};
-
-fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error)); */
   
 // Map routes
 router.get('/map', async (req, res) => {
