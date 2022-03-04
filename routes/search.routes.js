@@ -11,7 +11,9 @@ router.post('/search', async (req, res) => {
                 {country: req.body.search}
             ]
     })
-    res.render('results', {result})
+    console.log(result.id)
+    if(result.name) {res.redirect(`/city/${result.id}`)}
+    if(!result.name) {res.render('results', {result})}
 })
 
 // route to list all major cities of a country
@@ -22,7 +24,7 @@ router.get('/:country', async (req, res) => {
 
 // route for getting all the infos on that specific city
 router.get('/city/:id', async (req, res) => {
-    const result = await Cities.findById(req.params.id).populate('places')
+    const result = await Cities.findById(req.params.id).populate({path: 'places', populate: { path: 'author'}})
     
     // options to get weather for a city
     const city = result.name

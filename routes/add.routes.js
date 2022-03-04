@@ -26,7 +26,6 @@ router.post('/city/:id/add-place', isLoggedIn, upload.single('image'), async (re
     try {
         // adds created content to the user db
         user.content.push(place)
-        user.photos.push(place)
         await place.save()
         await city.save()
         await user.save()

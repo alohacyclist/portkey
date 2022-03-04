@@ -8,9 +8,9 @@
 <br>
 <ul>
     <% for(let i=0; i < result.places.length; i++) { %>
-        <li><%= result.places[i].name %></li>
+        <li><%= result.places[i].title %></li>
         <li><%= result.places[i].description %></li>
-        <li><%= result.places[i].author %></li>
+        <li><%= result.places[i].author.username %></li>
         <li><img src="<%= result.places[i].image %>"></li>
         <a href="/city/<%= result.places[i].id %>/edit"><button>Edit</button></a>
         <form action="/city/<%= result.places[i].id %>/delete?_method=DELETE" method="post" >
@@ -23,7 +23,7 @@
 <br>
 <br>
 <form action="/city/<%= result.id %>/add-place" method="post" enctype="multipart/form-data">
-    <input type="text" name="name" placeholder="Add title" required>
+    <input type="text" name="title" placeholder="Add title" required>
     <textarea name="description" placeholder="Say something about this place..." required></textarea>
     <input type="file" name="image" placeholder="Add photo">
     <button type="submit">Add</button>
