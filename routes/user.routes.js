@@ -9,7 +9,7 @@ const upload = require('../config/cloudstorage')
 router.get('/')
 
 router.get('/create', (req, res) => {
-    res.render('user/sign-up')
+    res.render('user/sign-up', {message: ""})
 })
 
 router.post('/create', upload.single('picture'), async (req, res) => {
@@ -40,7 +40,7 @@ router.post('/create', upload.single('picture'), async (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-    res.render("user/login");
+    res.render("user/login", {message: ""});
   })
 
 router.post('/login', async (req,res) => {

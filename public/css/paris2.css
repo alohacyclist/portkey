@@ -275,3 +275,13 @@ h4{
   background-color: #a0cde7;
   cursor: pointer;
 }
+
+.delete-btn > button{
+  float: right;
+  margin-top: 3px;
+  padding: 3px 6px;
+  border-radius: 8px;
+  border: .4px solid #2424cb;
+  background-color: #a0cde7;
+  cursor: pointer;
+}

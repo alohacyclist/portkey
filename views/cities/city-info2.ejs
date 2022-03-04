@@ -100,9 +100,12 @@
               <img src="<%= result.places[i].image %>" width="120px" height="100px">
              </div>
              <hr>
-              <form action="/city/<%= result.places[i].id %>/delete?_method=DELETE" method="post" >
+             <% if (currentUser) { %> 
+              <form class="delete-btn"action="/city/<%= result.places[i].id %>/delete?_method=DELETE" method="post" >
+                
                 <button type="submit">Delete</button>
               </form>
+              <% } %> 
              
         </div>
         <% }; %>
