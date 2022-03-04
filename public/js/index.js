@@ -9,33 +9,38 @@ let countries = []
 
 
 searchInput.addEventListener('input', (e) => {
-  /* message.style.display = "none" */
- 
   if(searchInput.value === "") {
     userCardContainer.style.display = "none"
   } else {
-    userCardContainer.style.display = "flex"
-  }
-  
-  const value = e.target.value.toLowerCase()       
-    // console.log(value)
-    // console.log(data[0].data[0].country)
-    countries.forEach(country => {
-      const isVisible = country.name.toLowerCase().includes(value)
-      country.element.classList.toggle('hide', !isVisible)
-       // console.log(isVisible)
-       // country.element.classList.toggle('hide', !isVisible)
-       // console.log(country.country)
+ userCardContainer.style.display = "flex"
+ userCardContainer.addEventListener('click', () => {
+})
+}
+
+const value = e.target.value.toLowerCase()       
+countries.forEach(city => {
+
+      const isVisible = city.name.toLowerCase().includes(value)
+      city.element.classList.toggle('hide', !isVisible)
       })
 })
 
-countries = data[0].data.map(country => {
-  const card = userCardTemplate.content.cloneNode(true).children[0]
-  const header = card.querySelector('[data-header]')
-  const body = card.querySelector('[data-body]')
-  header.textContent = country.country
-  userCardContainer.append(card)
-  return {name: country.country, element: card}
-})
 
-//https://raw.githubusercontent.com/Makariuz/travel-app/main/db.json
+  countries = data.map(country => {
+  
+   
+      const card = userCardTemplate.content.cloneNode(true).children[0]
+      const header = card.querySelector('[data-header]')
+      const body = card.querySelector('[data-body]')
+    
+      header.textContent = country.name
+      userCardContainer.append(card)
+      return {name: country.name, country: country.country, element: card}
+
+  
+   
+  })
+  
+
+
+

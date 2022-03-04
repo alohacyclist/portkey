@@ -17,6 +17,11 @@ const citySchema = new mongoose.Schema({
         type: [mongoose.SchemaTypes.ObjectId],
         default: [],
         ref: 'Places'
+    },
+    posts: {
+        type: [mongoose.SchemaTypes.ObjectId],
+        default: [],
+        ref: 'Post'
     }
 })
 

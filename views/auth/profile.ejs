@@ -1,13 +1,38 @@
-<h1>Welcome <%= user.username %></h1>
-<h4><%= user.email %></h4>
-<img src=<%= user.picture %>>
+<link rel="stylesheet" href="/css/card.css">
 
-<h2>All my posts:</h2>
-<% user.content.forEach(content => { %>
-    <div>
-        <%= content.title %>
-        <a href="/post/read/<%= content.id %>"><button>READ</button></a>
-        <br>
+<div class="body-container">
+    <div class="profile-container">
+       <div class="prof-details">
+            <h1>Welcome <%= user.username.charAt(0).toUpperCase() + user.username.substr(1).toLowerCase() %></h1>
+            <small><%= user.email %></small>
+      
+            <div class="view-card">
+                <h3> View Personal Articles: </h3>
+                <% user.content.forEach(content => { %>
+                    <div class="article-card">
+                        <h4> <%= content.title %> </h4>
+                        <%= content.content.slice(0, 80) %>...
+                        <a href="/post/read/<%= content.id %>"><button>Read Post</button></a>
+                    </div>
+                <% }) %>
+            </div>
+       </div>
+
+       <div class="prof-pictures">
+        <img src=<%= user.picture %>>
+
+        <div class="view-gallery">
+            <h2> View Gallery: </h2>
+            <% user.content.forEach(content => { %>
+                
+                <div class="image-card">
+                    <% if(content.picture) { %>
+                        <img src="<%= content.picture %>" style="width: 150px; height: 140px;">
+                    <% } %>
+                </div>
+                
+            <% }) %>
+            </div>
+        </div>
     </div>
-    
-<% }) %>
+</div>

@@ -1,16 +1,23 @@
-<h1> All Posts </h1>
 
-<div class="container">
+<link rel="stylesheet" href="/css/paris2.css">
+<div class="wrapper">
+    <div class="details-read">
 
-   <% post.forEach(post => { %>  
-    <div class="card-post">
-        <h2> <%=  post.title  %>  </h2>
-        <p> <%= post.content.substr(0, 100) %>... <a href="/post/read/<%= post.id %> "> Read more </a> </p>
-        <% if(post.picture) { %>
-            <img src="" alt="">
-        <% } %>
+    <h1> All Reviews </h1>
 
+
+    <div class="all-posts-content">
+
+        <% post.forEach(post => { %>  
+            
+            <div class="card-post">
+                <h2> <%=  post.title  %>  </h2>
+                <p> <%= post.content.substr(0, 100) %>... <a href="/post/read/<%= post.id %> "> Read more </a> </p>
+        
+            </div>
+           <% })  %> 
     </div>
-   <% })  %> 
+
+</div>
 
 </div>

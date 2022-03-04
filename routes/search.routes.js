@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Cities = require('../models/cities.model')
+const Post = require('../models/post.model')
 const Map = require('../models/map.model')
 const axios = require('axios')
 
@@ -7,13 +8,12 @@ const axios = require('axios')
 router.post('/search', async (req, res) => {
     const result = await Cities.find({
         $or: [
-                {name: req.body.search},
-                {country: req.body.search}
-            ]
+                {name: req.body.search.charAt(0).toUpperCase() + req.body.search.substr(1).toLowerCase()},
+                {country: req.body.search.charAt(0).toUpperCase() + req.body.search.substr(1).toLowerCase()}
+            ],          
     })
-    console.log(result.id)
-    if(result.name) {res.redirect(`/city/${result.id}`)}
-    if(!result.name) {res.render('results', {result})}
+    console.log(result)
+    res.render('cities/all-cities', {result})
 })
 
 // route to list all major cities of a country
@@ -24,8 +24,7 @@ router.get('/:country', async (req, res) => {
 
 // route for getting all the infos on that specific city
 router.get('/city/:id', async (req, res) => {
-    const result = await Cities.findById(req.params.id).populate({path: 'places', populate: { path: 'author'}})
-    
+    const result = await Cities.findById(req.params.id).populate({path: 'places', populate: {path: 'author'}}).populate({path: 'posts', populate: {path: 'author'}})
     // options to get weather for a city
     const city = result.name
     const weatherOptions = {
@@ -38,10 +37,10 @@ router.get('/city/:id', async (req, res) => {
         }
     }
     // send request to weather api 
-    const response = await axios.request(weatherOptions)
+   const response = await axios.request(weatherOptions)
 
     // options to get latitude and longitude for a city
-    const locationOptions = {
+   const locationOptions = {
         method: 'GET',
         url: `https://api.myptv.com/geocoding/v1/locations/by-text?searchText=${city}`,
         headers: { 'apiKey': 'MjYxMTAxZjJkODc3NDhmMmIwZTYwMGQyZGQ2YTdkZWM6NWI1ODQ2MDgtODBlYi00NmYxLWJiNDEtOGZkMzI5MTMyNTlk', "Content-Type": "application/json"  }
@@ -51,7 +50,7 @@ router.get('/city/:id', async (req, res) => {
     // passing coordinates to map
     const coordinates = [locationResponse.data.locations[0].referencePosition.latitude, locationResponse.data.locations[0].referencePosition.longitude]
 
-    res.render('cities/city-info', { result, response, coordinates })
+    res.render('cities/city-info2', { result, coordinates, response })
 })
 
 module.exports = router

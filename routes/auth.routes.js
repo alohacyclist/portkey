@@ -16,7 +16,6 @@ router.get('/google/callback', passport.authenticate('google', {
 router.get('/profile', isLoggedIn, async (req, res) => {
     const user = await User.findById(req.session.currentUser._id).populate('content')
     console.log(user)
-
     res.render('auth/profile', {user})
 })
 
