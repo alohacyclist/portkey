@@ -12,8 +12,8 @@ router.get('/google/callback', passport.authenticate('google', {
    })
  );
 
-router.get('/profile', async (req, res) => {
-  const user = await User.findOne({...req.body})
+router.get('/profile', isLoggedIn, async (req, res) => {
+  const user = req.session.currentUser
   res.render('user/profile', {user})
 })
   

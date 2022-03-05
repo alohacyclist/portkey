@@ -1,3 +1,18 @@
-<h1>Welcome <%= user.firstName %></h1>
-<h4><%= user.email %></h4>
-<img src='<%= user.picture %>'>
+<div class="profile-card">
+    <div class="profile-info">
+    <h2>Welcome <%= user.username %></h2>
+    <br>
+    <h4>E-Mail: <%= user.email %></h4>
+    <br>
+    <h4>Role: <%= user.role %></h4>
+    </div>
+    <div class="profile-picture">
+        <% if (user.picture) { %>
+        <img src='<%= user.picture.path %>'>
+        <% } else { %>
+        <img src='https://res.cloudinary.com/portkey/image/upload/v1645273815/profile-pictures/hp_owshdn.png'>
+        <% } %> 
+    </div>
+
+</div>
+

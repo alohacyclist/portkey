@@ -1,42 +1,21 @@
 const dotenv = require("dotenv");
-const S3 = require('aws-sdk/clients/s3')
-const fs = require('fs')
+const cloudinary = require("cloudinary").v2
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require("multer")
 dotenv.config();
 
-
-const bucket = process.env.AWS_BUCKET_NAME
-const region = process.env.AWS_BUCKET_REGION
-const  accessKey = process.env.AWS_ACCESS_KEY
-const secretKey  = process.env.AWS_SECRET_KEY
-
-const storage = new S3({
-  region,
-  accessKey,
-  secretKey
+cloudinary.config({ 
+  cloud_name: process.env.cloud_name, 
+  api_key: process.env.api_key, 
+  api_secret: process.env.api_secret, 
 });
 
-// uploads a file to s3
-function uploadFile(file) {
-    console.log(file)
-    const fileStream = fs.createReadStream(file.path)
-  
-    const uploadParams = {
-      Bucket: bucket,
-      Key: file.filename,
-      Body: fileStream
-    }
-  
-    return storage.upload(uploadParams).promise()
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    allowed_formats: ['jpg', 'png'],
+    folder: 'profile-pictures'
   }
-  
-  // downloads a file from s3
-  function downloadFile(fileKey) {
-    const downloadParams = {
-      Key: fileKey,
-      Bucket: bucket
-    }
-  
-    return storage.getObject(downloadParams).createReadStream()
-  }
+})
 
-module.exports = { uploadFile, downloadFile }
+module.exports = multer({ storage })

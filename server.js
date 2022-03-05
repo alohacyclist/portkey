@@ -57,5 +57,6 @@ app.get("/", (req, res) => {
 
 app.use('/auth', require('./routes/auth.routes'))
 app.use('/user', require('./routes/user.routes'))
+app.use('/', require('./routes/api.routes'))
 
 app.listen(process.env.PORT);

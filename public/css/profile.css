@@ -1,0 +1,15 @@
+.profile-card {
+    display: flex;
+    border: 1px solid black;
+    width: 15vw;
+    padding: 1em;
+    margin: 1em;
+}
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+.profile-picture > img {
+    width: 3vw;
+    margin: 0 0 0 1.5em;
+}

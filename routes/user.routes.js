@@ -3,17 +3,15 @@ const User = require('../models/user.model')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const multer  = require('multer')
-const { uploadFile, downloadFile } = require('../config/cloudstorage')
-const upload = multer({ dest: 'uploads/' })
+const fileUploader = require('../config/cloudstorage')
+// const upload = multer({ dest: 'uploads/' })
 
 router.get('/new-user', (req, res) => {
     res.render('user/sign-up')
 })
 
-router.post('/new-user', upload.single('profile-picture'), async (req, res) => {
-    const imgFile = req.file
-    const user = new User({...req.body, picture: imgFile})
-    const upload = await uploadFile(imgFile)
+router.post('/new-user', fileUploader.single('picture'), async (req, res) => {
+    const user = new User({...req.body, picture: req.file})
     const exists  = await User.findOne({ email: req.body.email, username: req.body.username })
     if (exists) { res.send('username or email already exists') }
     const hash = await bcrypt.hash(req.body.password, 10)
