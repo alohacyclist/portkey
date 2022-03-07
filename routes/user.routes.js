@@ -14,7 +14,7 @@ router.get('/create', (req, res) => {
 
 router.post('/create', upload.single('picture'), async (req, res) => {
     const uuid = uuidv4()
-    let activation_link = `http://${req.body.host}/auth/check/${uuid}`
+    let activation_link = `http://${req.headers.host}/auth/check/${uuid}`
     if(!req.file) {const user = new User({...req.body , confirmationCode: uuid })
     const exists  = await User.findOne({ email: req.body.email, username: req.body.username })
     if (exists) { res.send('username or email already exists') }
