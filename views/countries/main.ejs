@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="/css/paris2.css">
+
+<div class="main-container">
+
+    <div class="left-container">
+        <div class="heading">
+            <h1> <%= data.country %>  </h1>
+            <h3> <%= data.capital %>  </h3>
+        </div>
+        
+    </div>
+
+    <div class="right-container">
+        <div class="wrapper">
+            <h3>Best attractions in <%= data.capital %> </h3>
+            <% data.attractions.forEach(a => { %> 
+            <div class="info-wrapper">
+               <div class="info-card">
+                    <h3> <%= a.name %> </h3>
+                    <small>  <%- a.description.substr(0, 50) %>... </span> </small>
+                    <br>
+                    <a href="<%= a.url %>"> Check site</a> 
+                </div>
+                    <div class="div-img"><img src="<%= a.image %> " alt="" width="100" height= "100"> </div> 
+              
+            </div>
+            <% }) %> 
+        </div>
+
+        <div class="wrapper">
+            <h3>Best restaurants: </h3>
+                <% data.restaurants.forEach(r => { %> 
+                <div class="info-wrapper">
+                    <div class="info-card">
+                    <h3> <%= r.name %> </h3>
+                    <br>
+                    <small> Lorem ipsum dolor sit... </small>
+                    <br>
+                    <a href="<%= r.url %>"> Check site</a> 
+                </div>
+                    <div class="div-img"><img src="<%= r.image %> " alt="" width="100" height= "100"> </div> 
+                </div>
+            <% }) %> 
+        </div>
+        <div class="wrapper">
+            <h3>Best hotels: </h3>
+                <% data.hotels.forEach(h => { %> 
+                <div class="info-wrapper">
+                    <div class="info-card">
+                        <h3> <%= h.name %> </h3>
+                        <br>
+                        <small> Lorem ipsum dolor sit... </small> 
+                        <br>
+                        <a href="<%= h.url %>"> Check site</a> 
+                    </div>
+                    <div class="div-img"><img src="<%= h.image %> " alt=""> </div> 
+                </div>
+            <% }) %> 
+        </div>
+    </div>
+
+ 
+
+    
+</div>
+

@@ -1,0 +1,57 @@
+<div class="weather-card">
+    <div class="weather-top">
+        <div class="weather-info">
+            <div>
+            Here is your forecast for <%= response.data.location.name %>
+            <br>
+            Local Time: <%= response.data.location.localtime %>
+            <br>
+            Current Temperature: <%= response.data.current.temp_c %>°C
+            <br>
+            Feels Like: <%= response.data.current.feelslike_c %>°C
+            </div>
+            
+            <div class="forecast-weather-icon">
+                <%= response.data.current.condition.text %> 
+                <img src='<%= response.data.current.condition.icon %>'>
+            </div> 
+        </div>  
+    </div>
+    <div class="forecast">
+        
+            <h4>3-Day-Forecast:</h4>
+        
+        <div class="forecast-table">
+            <div class="forecastday">
+                <%= response.data.forecast.forecastday[0].date %>
+                <div class="forecast-weather-icon">
+                    <%= response.data.forecast.forecastday[0].day.condition.text %>  
+                    <img src='<%= response.data.forecast.forecastday[0].day.condition.icon %>'>
+                </div>
+                    High: <%= response.data.forecast.forecastday[0].day.maxtemp_c %>
+                    Low: <%= response.data.forecast.forecastday[0].day.mintemp_c %>
+             </div>
+             <div class="forecastday">
+                 <%= response.data.forecast.forecastday[1].date %>
+                 <div class="forecast-weather-icon">
+                     <%= response.data.forecast.forecastday[1].day.condition.text %>  
+                     <img src='<%= response.data.forecast.forecastday[2].day.condition.icon %>'>
+                 </div>
+                 
+                 High: <%= response.data.forecast.forecastday[1].day.maxtemp_c %>
+                 Low: <%= response.data.forecast.forecastday[1].day.mintemp_c %>
+             </div>
+             <br>
+             <div class="forecastday">
+                 <%= response.data.forecast.forecastday[2].date %>
+                 <div class="forecast-weather-icon">
+                     <%= response.data.forecast.forecastday[2].day.condition.text %>  
+                     <img src='<%= response.data.forecast.forecastday[2].day.condition.icon %>'>
+                 </div>
+                 
+                 High: <%= response.data.forecast.forecastday[2].day.maxtemp_c %>
+                 Low: <%= response.data.forecast.forecastday[2].day.mintemp_c %> 
+             </div>
+        </div>
+    </div>
+</div>

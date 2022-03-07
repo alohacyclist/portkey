@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="/css/paris2.css">
+
+<style>
+    nav{
+        background-image: url('../../images/travel.jpg');
+    }
+</style>
+<div class="wrapper">
+<div class="details-read">
+    <h1> <%=  post.title  %> </h1>
+    <h3>  <%=  post.description  %> </h3>
+     <div class="place-content">
+        
+         
+         <div> <%= post.content %> </div>     <div class="place-image">
+            <% if(post.picture) { %>
+                <img src="<%= post.picture %>" style="width: 300px; height: 200px;">
+                <% } %>
+        </div>
+       
+         <p> Created on: <%= post.createdAt.toLocaleString() %> by   <%= post.author.username %>  </p>
+        <hr>
+    
+         
+        
+        <a href="/post/<%= post.id %>/edit"><button>Edit</button></a>
+        
+        <form action="/post/<%= post.id %>/delete" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+        
+     </div>
+ 
+ </div>
+
+</div>

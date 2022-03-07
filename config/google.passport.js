@@ -7,7 +7,7 @@ module.exports = function(passport) {
   passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/auth/google/callback'
+    callbackURL: 'http://portkey1.herokuapp.com/auth/google/callback'
   },
   async (accessToken, refreshToken, profile, done) => {
     try {
@@ -36,10 +36,10 @@ module.exports = function(passport) {
     }
     }))
   passport.serializeUser((user, done) => {
-    done(null, user.id)
+    done(null, user.email)
   })
   passport.deserializeUser((user, done) => {
-    User.findById(user.id, (err, user) => {
+    User.findOne(user.email, (err, user) => {
       done(err, user)
     })
   })

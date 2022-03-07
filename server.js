@@ -23,6 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 // hooking up the public folder
 app.use(express.static("public"));
 
+app.use(override('_method'))
+
 require('./config/google.passport')(passport);
 
 // middleware for setting up the session
@@ -52,11 +54,15 @@ app.use((req, res, next) => {
 
 // home route
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home",{message: ""});
 });
 
 app.use('/auth', require('./routes/auth.routes'))
 app.use('/user', require('./routes/user.routes'))
+app.use('/post', require('./routes/post.routes'))
+app.use('/', require('./routes/add.routes'))
 app.use('/', require('./routes/api.routes'))
+app.use('/', require('./routes/search.routes'))
+app.use('/', require('./routes/forgot.routes'))
 
 app.listen(process.env.PORT);

@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/css/paris.css">
+
+<div class="paris-container">
+    <div class="city-info">
+        <div class="city-card">
+            <% result.forEach(function(item) { %>
+                <h2><a href="/city/<%= item.id %>"><%= item.name %></h2></a>
+                <% }); %>
+        </div>
+    </div>
+    
+</div>
+
+

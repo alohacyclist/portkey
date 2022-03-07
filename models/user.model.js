@@ -14,9 +14,22 @@ const userSchema = new mongoose.Schema({
         required: true,
         minLength: 8,
     },
-    picture: {
-        type: Object,
+    status: {
+        type: String,
+        enum: ['pending confirmation', 'active'],
+        default: 'pending confirmation',
     },
+    confirmationCode: {
+        type: String,
+    },
+    picture: { 
+        type: String,
+        default: 'https://res.cloudinary.com/portkey/image/upload/v1645273815/profile-pictures/hp_owshdn.png'
+    },
+    content: [{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref:'Post'
+    }],
     role: {
         type: String,
         default: 'user'

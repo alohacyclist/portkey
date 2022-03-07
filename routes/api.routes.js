@@ -1,30 +1,44 @@
 const router = require('express').Router()
+const axios = require('axios')
+const Map = require('../models/map.model')
 
-router.get('/weather', (req, res) => {
-    res.render('weather')
+// Map routes
+router.get('/map', async (req, res) => {
+    const coordinates = await Map.find()
+    res.render('maps/map', { coordinates })
 })
-
-router.post('/weather', (req, res) => {
-    const city = req.body.search
-    const request = {
-        method: 'GET',
-        params: {
-            search: city,
-            units: 'imperial',
-            mode:'xml'
-        },
-        headers: {
-            'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
-            'x-rapidapi-key': '63f595cbd6msh1f205a4ec2140e9p1b23b3jsn5253b58698c6'
-        }
-    }
-    fetch('https://community-open-weather-map.p.rapidapi.com/weather', request)
-    .then(response => {
-        console.log(response)
-        res.render('forecast', {
-            response
-        })
+  
+router.post('/map', async (req, res) => {
+    const coordinates = JSON.parse(Object.keys(req.body)[0])
+    await Map.create({
+      xy: [coordinates.lat, coordinates.lng],
     })
+    res.render('maps/map', { coordinates })
+  })
+
+// Weather routes
+router.get('/weather', (req, res) => {
+  res.render('weather/weather')
 })
 
+router.post('/weather', async (req, res) => {
+  const city = req.body.search
+  const options = {
+    method: 'GET',
+    url: 'https://weatherapi-com.p.rapidapi.com/forecast.json',
+    params: {q: `${city}`, days: '3'},
+    headers: {
+    'x-rapidapi-host': 'weatherapi-com.p.rapidapi.com',
+    'x-rapidapi-key': process.env.RAPID_API_KEY
+    }
+}
+
+  axios.request(options).then(function (response) {
+      res.render('weather/forecast', {response})
+  }).catch(function (error) {
+      console.error(error);
+  });
+})
+  
 module.exports = router
+    
