@@ -4,9 +4,9 @@ const sendEmail = async (email, subject, text) => {
   try {
     const transporter = nodemailer.createTransport({
       name: 'port-key.herokuapp.com',
-      host: process.env.MAIL_HOST,
+      host: 'smtp.gmail.com',
       service: process.env.MAIL_SERVICE,
-      port: 587,
+      port: 465,
       secure: true,
       auth: {
         user: process.env.MAIL_ADD,
