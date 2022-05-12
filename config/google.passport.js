@@ -7,7 +7,7 @@ module.exports = function(passport) {
   passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'http://portkey1.herokuapp.com/auth/google/callback'
+    callbackURL: 'http://port-key.herokuapp.com/auth/google/callback'
   },
   async (accessToken, refreshToken, profile, done) => {
     try {

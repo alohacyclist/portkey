@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const sendEmail = async (email, subject, text) => {
   try {
     const transporter = nodemailer.createTransport({
-      name: 'portkey1.herokuapp.com',
+      name: 'port-key.herokuapp.com',
       host: process.env.MAIL_HOST,
       service: process.env.MAIL_SERVICE,
       port: 587,

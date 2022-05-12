@@ -16,7 +16,6 @@ router.post('/create/:id', isLoggedIn, upload.single('picture'), async (req,res)
             // adds created content to the user db
             user.content.push(post)
             city.posts.push(post.id)
-            console.log(user)
         try{
             await city.save()
             await post.save()
@@ -31,7 +30,6 @@ router.post('/create/:id', isLoggedIn, upload.single('picture'), async (req,res)
             // adds created content to the user db
             user.content.push(post)
             city.posts.push(post.id)
-            console.log(user)
         try{
             await city.save()
             await post.save()
